@@ -18,6 +18,16 @@ class Thread extends Model
      *
      * @return string
      */
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('replyCount', function ($builder) {
+            $builder->withCount('replies');
+        });
+    }
+
     public function path()
     {
         return "/threads/{$this->channel->slug}/{$this->id}";
@@ -48,6 +58,11 @@ class Thread extends Model
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function getReplyCountAttribute()
+    {
+        return $this->replies()->count();
     }
     /**
      * Add a reply to the thread.
