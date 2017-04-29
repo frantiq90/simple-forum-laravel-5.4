@@ -11,7 +11,7 @@ class ProfilesController extends Controller
     {
     	return view('profiles.show', [
     		'profileUser' => $user,
-    		'threads' => $user->threads()->paginate(10)
+    		'activities' => \App\Activity::feed($user)
     		]);
     }
 }
