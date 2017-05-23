@@ -15,7 +15,7 @@ class RepliesController extends Controller
 
     public function store($channelId, Thread $thread)
     {
-        $this->validate(request(), ['body' => 'required']);
+      $this->validate(request(), ['body' => 'required']);
 
     	$thread->AddReply([
     		'body' => request('body'),
@@ -35,7 +35,7 @@ class RepliesController extends Controller
     public function destroy(Reply $reply)
     {
         $this->authorize('update', $reply);
-        
+
         $reply->delete();
 
         if (request()->expectsJson()) {
