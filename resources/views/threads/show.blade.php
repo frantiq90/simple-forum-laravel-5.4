@@ -28,15 +28,9 @@
                     </div>
                 </div>
 
-                <replies :data="{{ $thread->replies }}" 
+                <replies 
                 @removed="repliesCount--"
                 @added="repliesCount++"></replies>
-
-                {{--
-
-                {{ $replies->links() }}
-
-                --}}
 
                 
             </div>
