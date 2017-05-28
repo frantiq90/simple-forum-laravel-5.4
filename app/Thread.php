@@ -16,11 +16,8 @@ class Thread extends Model
     protected $guarded = [];
 
     protected $with = ['creator', 'channel'];
-    /**
-     * Get a string path for the thread.
-     *
-     * @return string
-     */
+   
+    protected $appends = ['isSubscribedTo'];
 
     protected static function boot()
     {
@@ -100,5 +97,12 @@ class Thread extends Model
     public function subscriptions()
     {
        return $this->hasMany(ThreadSubscription::class);
+    }
+
+    public function getIsSubscribedToAttribute()
+    {
+        return $this->subscriptions()
+            ->where('user_id', auth()->id()) 
+            ->exists();       
     }
 }
