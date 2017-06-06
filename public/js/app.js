@@ -17875,21 +17875,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['active'],
+    props: ['active'],
 
-	computed: {
-		classes: function classes() {
-			return ['btn', this.active ? 'btn-primary' : 'btn-default'];
-		}
-	},
+    computed: {
+        classes: function classes() {
+            return ['btn', this.active ? 'btn-primary' : 'btn-default'];
+        }
+    },
 
-	methods: {
-		subscribe: function subscribe() {
-			axios[this.active ? 'delete' : 'post'](location.pathname + '/subscriptions');
-
-			this.active = !this.active;
-		}
-	}
+    methods: {
+        subscribe: function subscribe() {
+            axios[this.active ? 'delete' : 'post'](location.pathname + '/subscriptions');
+            this.active = !this.active;
+        }
+    }
 });
 
 /***/ }),
