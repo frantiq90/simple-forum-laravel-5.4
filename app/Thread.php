@@ -88,6 +88,13 @@ class Thread extends Model
             ->notify($reply);
     }
 
+    public function hasUpdatesFor($user)
+    {
+        $key = $user->visitedThreadCacheKey($this);
+     
+        return $this->updated_at > cache($key);
+    }
+
     public function scopeFilter($query, ThreadFilters $filters)
     {
         return $filters->apply($query);
