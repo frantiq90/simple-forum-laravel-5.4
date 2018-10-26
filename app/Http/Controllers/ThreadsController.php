@@ -54,13 +54,15 @@ class ThreadsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
+            'rating' => 'required',
             'channel_id' => 'required|exists:channels,id'
         ]);
         $thread = Thread::create([
             'user_id' => auth()->id(),
             'channel_id' => request('channel_id'),
             'title' => request('title'),
-            'body' => request('body')
+            'body' => request('body'),
+            'rating' => request('rating')
         ]);
         return redirect($thread->path())
             ->with('flash', 'Your thread has been published!');
@@ -73,7 +75,7 @@ class ThreadsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($channel, Thread $thread)
-    {   
+    {
         if (auth()->check()) {
              auth()->user()->read($thread);
         }

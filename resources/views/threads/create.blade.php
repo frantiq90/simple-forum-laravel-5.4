@@ -34,6 +34,11 @@
                         </div>
 
                         <div class="form-group">
+                           <label for="rating">Rating:</label>
+                           <input type="number" min="1" max="5" class="form-control" id="rating" placeholder="rating" name="rating" value="{{ old('rating') }}">
+                        </div>
+
+                        <div class="form-group">
                           <button type="submit" class="btn btn-primary">Publish</button>
                         </div>
 
